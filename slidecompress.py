@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 import tempfile
@@ -45,10 +46,10 @@ def compress_media(path):
         return ext, size, size
 
 
-def compress(source, width=1024):
+def compress(source, width=1024, force=False):
     # Compress compresses all images in a PPT
     source = os.path.abspath(source)
-    output = basename(source) + ".compressed.pptx"
+    output = basename(source) + ".compressed.pptx" if not force else source
 
     with tempfile.TemporaryDirectory() as tmpdir:
         with ZipFile(source) as archive:
@@ -105,12 +106,15 @@ def compress(source, width=1024):
                     archive.write(path, os.path.relpath(path, tmpdir))
 
 
-if __name__ == "__main__":
-    import argparse
-
+def main():
     parser = argparse.ArgumentParser(description="Compress PowerPoint presentations")
     parser.add_argument("--width", type=int, default=1024, help="Width of image output")
+    parser.add_argument("-f", "--force", action="store_true", help="Overwrite original file")
     parser.add_argument("source", help="PPTX file to compress")
 
     args = parser.parse_args()
-    compress(args.source, width=args.width)
+    compress(args.source, width=args.width, force=args.force)
+
+
+if __name__ == "__main__":
+    main()

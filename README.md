@@ -19,6 +19,10 @@ A command-line tool that reduces PowerPoint file sizes by intelligently compress
 
 ## Usage
 
+First, [compress all images in PowerPoint](https://support.microsoft.com/en-us/office/reduce-the-file-size-of-your-powerpoint-presentations-9548ffd4-d853-41e7-8e40-b606bca036b4).
+
+Then, run the tool:
+
 ```bash
 uvx slidecompress presentation.pptx
 ```
@@ -30,6 +34,12 @@ uvx slidecompress --width 480 presentation.pptx
 ```
 
 The compressed file will be saved as `presentation.compressed.pptx` in the same directory.
+
+To overwrite the original file, use the `-f` flag:
+
+```bash
+uvx slidecompress -f presentation.pptx
+```
 
 ## Example Output
 

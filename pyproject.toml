@@ -1,6 +1,6 @@
 [project]
 name = "slidecompress"
-version = "0.1.1"
+version = "0.1.3"
 description = "Compress PowerPoint presentations by optimizing embedded images"
 requires-python = ">=3.8"
 authors = [
